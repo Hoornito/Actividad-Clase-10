@@ -4,6 +4,8 @@ var IMC = {
     resultado: "imcResultado",
     mensaje: {
         error: "Formato incorrecto",
+        errorPeso: "Peso maximo o minimo superado.",
+        errorAltura: "Altura maxima o minima superada.",
     },
 
     limpiar: function () {
@@ -27,9 +29,15 @@ var IMC = {
         var altura = $("#" + IMC.altura).val();
         var resultado = "";
 
-        if (isNaN(parseInt(peso)) || isNaN(parseInt(altura))) {
+        if (isNaN(parseInt(peso)) || isNaN(parseInt(altura)) || parseInt(peso) == 0 || parseInt(altura) == 0) {
             $("#" + IMC.resultado).val(IMC.mensaje.error);
-        } 
+        }
+        else if(parseInt(peso) > 544 || parseInt(peso) < 2 ){
+            $("#" + IMC.resultado).val(IMC.mensaje.errorPeso);
+        }
+        else if(parseInt(altura) > 272 || parseInt(altura) < 10){
+            $("#" + IMC.resultado).val(IMC.mensaje.errorAltura);
+        }
         else {
             var imc = peso / (altura / 100 * altura / 100);
             if (imc < 18.5) {
@@ -55,20 +63,6 @@ var IMC = {
             $("#" + IMC.resultado).val(imc);
         }
     },
-
-    generate_table: function () {
-
-        
-        
-        
-        // put the <tbody> in the <table>
-        tbl.appendChild(tblBody);
-        // appends <table> into <body>
-        document.body.appendChild(tbl);
-        // sets the border attribute of tbl to '2'
-        tbl.setAttribute("border", "2");
-    }
-
 };
 
 $(document).ready(function () {
