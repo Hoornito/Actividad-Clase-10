@@ -27,7 +27,7 @@ document.querySelector('#app').innerHTML = `
     </div>
   </div>
 </div>
-<div id="Tab" class="imcTable hidden">
+<div id="Tab" class="imcTable mt-3 hidden">
   <table class="table">
     <thead>
       <tr>
